@@ -1,0 +1,9 @@
+# Raw source data (large, downloadable from Kaggle)
+part1/data/
+
+# Generated database file (rebuilt by build_database.py)
+part1/olist.db
+
+# Python cache
+__pycache__/
+*.pyc
