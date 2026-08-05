@@ -7,3 +7,8 @@ part1/olist.db
 # Python cache
 __pycache__/
 *.pyc
+
+
+# Environment variables / API keys
+.env
+part3/.env
