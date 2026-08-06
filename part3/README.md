@@ -14,7 +14,6 @@ free-text `review_comment_message` field (200+ non-empty records, mostly Portugu
 
 The API key is loaded from an environment variable and is **never** committed.
 To run this code, set:
-
 GEMINI_API_KEY=your_google_gemini_api_key
 
 Store it in a `.env` file in this folder. The `.env` file is excluded via `.gitignore`.
