@@ -14,7 +14,7 @@ WHERE order_status NOT IN ('delivered', 'shipped', 'invoiced');
 -- Orders purchased during the year 2017.
 SELECT order_id, order_purchase_timestamp
 FROM orders
-WHERE order_purchase_timestamp BETWEEN '2017-01-01' AND '2017-12-31';
+WHERE order_purchase_timestamp BETWEEN '2017-01-01 00:00:00' AND '2017-12-31 23:59:59';
 
 -- Task 2d: ORDER BY two columns, one ascending, one descending
 -- Sort by state (A->Z), then city (Z->A) within each state.

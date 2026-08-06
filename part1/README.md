@@ -23,13 +23,12 @@ in for the numeric analysis.
 
 ## How to run
 
-```
 python3 build_database.py
 python3 run_queries.py
 python3 export_csv.py
 python3 clean_data.py
 python3 outlier_audit.py
-```
+
 
 ## Database Schema
 
@@ -59,7 +58,6 @@ The database (`olist.db`) contains two tables with an enforced key relationship.
 **Key relationship:** each order belongs to exactly one customer, via
 `orders.customer_id` referencing `customers.customer_id`.
 
-
 ## Foreign Key Enforcement (Task 1)
 
 SQLite does not enforce foreign keys by default, so `build_database.py` runs
@@ -68,6 +66,10 @@ SQLite does not enforce foreign keys by default, so `build_database.py` runs
 To prove enforcement is actually active (not just declared in the schema), the
 script attempts to insert an order whose `customer_id` does not exist in the
 `customers` table. SQLite rejects it:
+
+Testing foreign key enforcement...
+SUCCESS: invalid insert was rejected by the foreign key.
+Error reported by SQLite: FOREIGN KEY constraint failed
 
 
 This confirms the foreign-key constraint is enforced at runtime.
@@ -82,10 +84,14 @@ All queries live in `queries.sql` and run without error via `run_queries.py`.
 |---|--------------------|--------------------------------------------------|---------------|
 | a | `WHERE ... IN`     | Orders with status delivered/shipped/invoiced    | 97,899        |
 | b | `WHERE ... NOT IN` | Orders with any other status                     | 1,542         |
-| c | `BETWEEN` (date)   | Orders purchased during 2017                      | 45,027        |
+| c | `BETWEEN` (date)   | Orders purchased during 2017 (full-day range)    | 45,101        |
 | d | `ORDER BY` (2 cols)| Customers sorted by state ASC, city DESC          | 99,441        |
 | e | Subquery (`NOT EXISTS`) | Customers with no orders                     | 0             |
 | f | `LIKE '%'`         | Customers in cities starting with "sao"           | 20,988        |
+
+Query (c) uses a full-day upper bound (`... AND '2017-12-31 23:59:59'`) so that
+orders placed during the day on 31 Dec 2017 are included — the timestamps carry a
+time component, so a plain `'2017-12-31'` bound would silently drop them.
 
 Query (e) uses `NOT EXISTS` (the preferred approach) to avoid the well-known
 `NOT IN` + NULL trap, where a NULL in the subquery would silently return zero
@@ -149,15 +155,25 @@ orphans, so all three checks below were run.
 
 **(a) COUNT(DISTINCT ...) sanity check** — distinct customers in each table:
 
+distinct_customers = 99,441
+customers_with_orders = 99,441
+
+
 The counts match, a first hint at a 1:1 relationship.
 
 **(b) Grouped child-count** — for each customer, count orders, keep only those
 with more than one:
 
+0 rows returned
+
+
 No customer has more than one order → the relationship is **1:1**, not 1:many.
 This is the check that actually distinguishes the two, which count (a) alone cannot.
 
 **(c) Orphan check** — orders whose `customer_id` has no matching customer:
+
+0 rows returned
+
 
 No orphaned orders exist (as expected, since the foreign key prevents them).
 
@@ -198,8 +214,10 @@ After imputation, `isnull().sum()` is **0 for every column**.
 
 Duplicate rows were checked with `drop_duplicates()`:
 
-No duplicates exist, as expected — each row is keyed by a unique `order_id`.
+99,440 rows before, 99,440 rows after (0 duplicates removed)
 
+
+No duplicates exist, as expected — each row is keyed by a unique `order_id`.
 
 ## Outlier Audit (Task 8)
 
