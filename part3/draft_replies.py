@@ -50,7 +50,7 @@ def save_cache():
     with open(REPLY_CACHE, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False, indent=2)
 
-DELAY = 6
+DELAY = 2
 
 print("=" * 60)
 print("TASK 6: AUTO-DRAFTED REPLIES")
@@ -71,7 +71,7 @@ for key, entry in aspect_results.items():
 
     review = entry["review"]
     aspect_data = entry["parsed"]
-    reply = call_llm(reply_prompt(review, aspect_data), temperature=0.4, max_tokens=400)
+    reply = call_llm(reply_prompt(review, aspect_data), temperature=0.4, max_tokens=1500)
 
     cache[key] = {"review": review, "aspect_data": aspect_data, "reply": reply}
     save_cache()
@@ -88,6 +88,5 @@ for key, entry in cache.items():
     print(f"**Review {key}:** {entry['review']}\n")
     print(f"**Auto-drafted reply:** {entry['reply']}\n")
     print("---\n")
-
 
     

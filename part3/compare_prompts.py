@@ -23,7 +23,7 @@ for i, r in enumerate(reviews, 1):
 # Space calls ~13s apart to respect the 5-requests-per-minute free tier.
 # ------------------------------------------------------------
 valid_counts = {name: 0 for name in TEMPLATES}
-DELAY = 30   # seconds between calls (free tier is strict)
+DELAY = 2   # seconds between calls (free tier is strict)
 
 print("\n" + "=" * 60)
 print("RUNNING 15 CALLS (3 templates x 5 reviews)")

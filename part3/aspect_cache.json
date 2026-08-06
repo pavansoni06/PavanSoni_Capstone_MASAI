@@ -1,0 +1,142 @@
+{
+  "0": {
+    "review": "Recebi bem antes do prazo estipulado.",
+    "parsed": {
+      "product": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      },
+      "delivery": {
+        "sentiment": "positive",
+        "phrase": "Delivered well before the deadline"
+      }
+    },
+    "valid": true
+  },
+  "1": {
+    "review": "Parabéns lojas lannister adorei comprar pela Internet seguro e prático Parabéns a todos feliz Páscoa",
+    "parsed": {
+      "product": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      },
+      "delivery": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      }
+    },
+    "valid": true
+  },
+  "2": {
+    "review": "aparelho eficiente. no site a marca do aparelho esta impresso como 3desinfector e ao chegar esta com outro nome...atualizar com a marca correta uma vez que é o mesmo aparelho",
+    "parsed": {
+      "product": {
+        "sentiment": "positive",
+        "phrase": "efficient device with incorrect branding"
+      },
+      "delivery": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      }
+    },
+    "valid": true
+  },
+  "3": {
+    "review": "Mas um pouco ,travando...pelo valor ta Boa.\r\n",
+    "parsed": {
+      "product": {
+        "sentiment": "positive",
+        "phrase": "freezes slightly but good value"
+      },
+      "delivery": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      }
+    },
+    "valid": true
+  },
+  "4": {
+    "review": "Vendedor confiável, produto ok e entrega antes do prazo.",
+    "parsed": {
+      "product": {
+        "sentiment": "neutral",
+        "phrase": "product quality was acceptable"
+      },
+      "delivery": {
+        "sentiment": "positive",
+        "phrase": "delivered earlier than expected"
+      }
+    },
+    "valid": true
+  },
+  "5": {
+    "review": "GOSTARIA DE SABER O QUE HOUVE, SEMPRE RECEBI E ESSA COMPRA AGORA ME DECPCIONOU",
+    "parsed": {
+      "product": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      },
+      "delivery": {
+        "sentiment": "negative",
+        "phrase": "order was not received"
+      }
+    },
+    "valid": true
+  },
+  "6": {
+    "review": "Péssimo",
+    "parsed": {
+      "product": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      },
+      "delivery": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      }
+    },
+    "valid": true
+  },
+  "7": {
+    "review": "Loja nota 10",
+    "parsed": {
+      "product": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      },
+      "delivery": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      }
+    },
+    "valid": true
+  },
+  "8": {
+    "review": "obrigado pela atençao amim dispensada",
+    "parsed": {
+      "product": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      },
+      "delivery": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      }
+    },
+    "valid": true
+  },
+  "9": {
+    "review": "A compra foi realizada facilmente.\r\nA entrega foi efetuada muito antes do prazo dado.\r\nO produto já começou a ser usado e até o presente,\r\nsem problemas.",
+    "parsed": {
+      "product": {
+        "sentiment": "positive",
+        "phrase": "product working without any issues"
+      },
+      "delivery": {
+        "sentiment": "positive",
+        "phrase": "delivered well ahead of schedule"
+      }
+    },
+    "valid": true
+  }
+}

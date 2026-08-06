@@ -28,7 +28,7 @@ def call_llm(prompt, temperature=0.2, max_tokens=800, json_mode=False):
     for attempt in range(1, max_retries + 1):
         try:
             response = _client.models.generate_content(
-                model="gemini-2.0-flash-lite",
+                model="gemini-flash-latest",
                 contents=prompt,
                 config=config,
             )

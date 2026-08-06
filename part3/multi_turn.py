@@ -10,7 +10,7 @@ client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
 # supplied in the first turn, and we print the full history object.
 # ------------------------------------------------------------
 
-MODEL = "gemini-2.0-flash"
+MODEL = "gemini-flash-latest"
 
 print("=" * 60)
 print("TASK 7: MULTI-TURN CONVERSATION")

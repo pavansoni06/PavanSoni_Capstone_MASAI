@@ -49,7 +49,7 @@ def save_cache():
     with open(CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False, indent=2)
 
-DELAY = 6  # seconds between calls (safe under 15 RPM for gemini-2.0-flash)
+DELAY = 2  # seconds between calls (safe under 15 RPM for gemini-2.0-flash)
 
 print("=" * 60)
 print("TASK 5: ASPECT-BASED SENTIMENT (10 records)")
@@ -63,7 +63,7 @@ for i in range(len(records)):
         print(f"\nRecord {i}: cached (skip)")
         continue
 
-    raw = call_llm(aspect_prompt(review), json_mode=True)
+    raw = call_llm(aspect_prompt(review), json_mode=True, max_tokens=2000)
     try:
         parsed = json.loads(raw) if raw else None
         valid = bool(parsed and "product" in parsed and "delivery" in parsed)

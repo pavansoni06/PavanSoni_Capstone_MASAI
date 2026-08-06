@@ -1,0 +1,44 @@
+{
+  "0": {
+    "review": "Recebi bem antes do prazo estipulado.",
+    "aspect_data": {
+      "product": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      },
+      "delivery": {
+        "sentiment": "positive",
+        "phrase": "Delivered well before the deadline"
+      }
+    },
+    "reply": "Thank you so much for taking the time to share your feedback with us! We are delighted to hear that your order arrived well before the expected delivery date. Getting your packages to you quickly and safely is always a top priority for our team. We hope you enjoy your purchase, and we look forward to serving you again soon!"
+  },
+  "1": {
+    "review": "Parabéns lojas lannister adorei comprar pela Internet seguro e prático Parabéns a todos feliz Páscoa",
+    "aspect_data": {
+      "product": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      },
+      "delivery": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      }
+    },
+    "reply": "Thank you so much for your wonderful review and for trusting Lojas Lannister! We are thrilled to hear that you loved your online shopping experience with us and found our platform so safe and practical to use. Our entire team truly appreciates your kind congratulations, and we wish you and your family a very Happy Easter as well!"
+  },
+  "2": {
+    "review": "aparelho eficiente. no site a marca do aparelho esta impresso como 3desinfector e ao chegar esta com outro nome...atualizar com a marca correta uma vez que é o mesmo aparelho",
+    "aspect_data": {
+      "product": {
+        "sentiment": "positive",
+        "phrase": "efficient device with incorrect branding"
+      },
+      "delivery": {
+        "sentiment": "neutral",
+        "phrase": "not mentioned"
+      }
+    },
+    "reply": "Thank you so much for your feedback and for letting us know that you are pleased with the device's efficiency! We sincerely apologize for the confusion caused by the mismatch between the brand name displayed on our website and the one on the product you received. We truly appreciate your helpful suggestion and have already requested our catalog team to update the listing with the correct brand details immediately. Please feel free to reach out to our support team if you have any further questions about your purchase—we are always here to help!"
+  }
+}
