@@ -1,3 +1,33 @@
+# Part 2 — Statistical EDA, Hypothesis Testing & Visualization
+
+## Overview
+
+This part performs statistical exploratory data analysis on the cleaned Olist
+e-commerce dataset produced in Part 1. It computes descriptive statistics, engineers
+features, runs grouped analyses, tests a business hypothesis, and produces four
+labelled visualizations.
+
+**Dataset:** `cleaned_data.csv` (99,440 rows, reused from Part 1). Columns include
+customer location, order status, a purchase timestamp, `payment_value`, and a
+computed `delivery_days` measure. This meets the size requirements (500+ rows,
+6+ columns, a date column).
+
+## Files in this folder
+
+- `analysis.py` — the full analysis script (Tasks 1–10).
+- `cleaned_data.csv` — the input dataset.
+- `chart_heatmap.png` — correlation heatmap.
+- `chart_scatter.png` — scatter plot coloured by payment segment.
+- `chart_barplot.png` — average payment value by state.
+- `chart_histogram.png` — distribution of payment value.
+
+## How to run
+
+python3 analysis.py
+
+
+This runs all tasks in sequence and regenerates the four PNG charts.
+
 ## Analysis Summary
 
 **Initial inspection (Task 1):** `df.info()` and `df.describe(include='all')` confirm
@@ -91,5 +121,3 @@ Customers who pay more do not receive — or pay for — faster delivery.
 → **Recommendation:** Delivery speed is not currently priced in. Test premium expedited-
 shipping options to capture willingness-to-pay, especially in the High and Very High
 payment segments.
-
-
