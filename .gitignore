@@ -13,4 +13,4 @@ __pycache__/
 .env
 part3/.env
 
-part4/.env
+part4/.env.DS_Store
