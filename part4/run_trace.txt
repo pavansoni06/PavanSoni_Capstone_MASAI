@@ -1,0 +1,45 @@
+============================================================
+MEMORY DEMO (2 turns)
+============================================================
+
+[Turn 1] User: What is the status of order A101?
+[Turn 1] Agent: Order A101 has been shipped and is expected to be delivered in 2 days.
+   TOOL CALL: {"tool": "lookup_order_status", "arguments": {"order_id": "A101"}}
+   RESULT   : Order A101: shipped, expected delivery in 2 days
+
+[Turn 2] User: Is that order going to arrive soon?
+[Turn 2] Agent: Yes, order A101 is scheduled to arrive soon! It has been shipped and is expected to be delivered in **2 days**.
+   TOOL CALL: {"tool": "lookup_order_status", "arguments": {"order_id": "A101"}}
+   RESULT   : Order A101: shipped, expected delivery in 2 days
+
+============================================================
+THIRD QUERY (advice tool)
+============================================================
+
+[Query 3] User: I'm feeling stressed about work. Can you give me a piece of advice?
+[Query 3] Agent: I'm sorry to hear that you're feeling stressed about work. Here are a few practical pieces of advice that might help:
+
+1. **Take a Step Back & Breathe:** When feeling overwhelmed, pause for a few minutes. Deep, slow breathing helps activate your body's relaxation response and lowers stress levels.
+2. **Break Tasks Down:** Divide large projects or daunting to-do lists into smaller, manageable micro-tasks. Focus on just the very next single step rather than the whole picture.
+3. **Prioritize the Essentials:** Identify the 1–2 most important tasks for the day using a framework like the Eisenhower Matrix (urgent vs. important). Give yourself permission to defer non-essential items.
+4. **Establish Clear Boundaries:** When your workday ends, step away from work emails and notifications so your mind has dedicated time to rest and recharge.
+5. **Communicate Early:** If your workload is truly unmanageable, speak with your manager or team. Often, deadlines can be adjusted or tasks redistributed.
+
+Remember to take short, regular breaks throughout the day, and be kind to yourself—your well-being comes first!
+   TOOL CALL: {"tool": "get_random_advice", "arguments": {}}
+   RESULT   : ERROR: could not fetch advice (HTTPSConnectionPool(host='api.adviceslip.com', port=443): Read timed out. (read timeout=10))
+============================================================
+CONDITIONAL WORKFLOW (RunnablePassthrough + RunnableBranch)
+============================================================
+
+[Input A] My order arrived broken and nobody has helped me!
+  Classified as: complaint
+  Reply: I am so deeply sorry that your order arrived broken, and even more sorry that you haven't received the support you deserved until now. That is completely unacceptable, and I fully understand how frustrating this must be for you. 
+
+I am stepping in to make this right immediately. Please share your order number with me, and I will personally arrange a free replacement or a full refund for you right away.
+
+[Input B] Your service was amazing and delivery was super fast, thank you!
+  Classified as: praise
+  Reply: Aww, thank you so much! 🌟 Hearing that totally made my day! We are so thrilled to hear that you had a great experience and that your delivery arrived super fast. 
+
+It was a true pleasure helping you out, and we can't wait to serve you again soon. Have a bright and wonderful day! 😊

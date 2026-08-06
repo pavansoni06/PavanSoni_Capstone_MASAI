@@ -27,6 +27,7 @@ Store it in a `.env` file in this folder. The `.env` file is excluded via
 - `tools.py` — the two agent tools.
 - `agent.py` — the tool-calling agent, memory demo, tool-call logging, 3 queries.
 - `workflow.py` — the RunnablePassthrough + RunnableBranch conditional workflow.
+- `run_trace.txt` — recorded trace of the end-to-end demonstration runs.
 
 ## How to run
 
@@ -60,13 +61,13 @@ and cannot run away. The underlying chat model is Gemini (`gemini-flash-latest`)
 For every tool call, the resolved decision is extracted from LangChain's **own
 native mechanism** — the executor's `intermediate_steps` (each an `AgentAction`
 carrying `.tool` and `.tool_input`) — not by parsing raw text. Real examples
-captured during a run:
+captured during a run (see `run_trace.txt`):
 
 TOOL CALL: {"tool": "lookup_order_status", "arguments": {"order_id": "A101"}}
 RESULT : Order A101: shipped, expected delivery in 2 days
 
 TOOL CALL: {"tool": "get_random_advice", "arguments": {}}
-RESULT : Just because you are offended, doesn't mean you are right.
+RESULT : ERROR: could not fetch advice (api.adviceslip.com timed out) — tool returned the error as data; agent recovered gracefully
 
 
 ## Demonstrated queries (the end-to-end loop)
@@ -77,13 +78,17 @@ RESULT : Just because you are offended, doesn't mean you are right.
 
 **Query 2 (Turn 2 — memory):** "Is that order going to arrive soon?"
 - The user did **not** repeat the order ID. The agent reused "A101" from the
-  conversation history (passed via `chat_history`) and answered:
-  "Yes, order A101 is scheduled to arrive soon — expected in 2 days."
+  conversation history (passed via `chat_history`) and answered that order A101 is
+  shipped and expected within 2 days.
 - This demonstrates conversation memory across two turns.
 
 **Query 3:** "I'm feeling stressed about work. Can you give me a piece of advice?"
-- Tool called: `get_random_advice({})` (the live external API)
-- Final answer: returned a real piece of fetched advice plus supportive suggestions.
+- Tool called: `get_random_advice({})` (the live external API `api.adviceslip.com`)
+- On this run the live API timed out. Because the tool follows the **Safe** good-tool
+  property, it caught the error and returned it as data (`ERROR: could not fetch
+  advice...`) rather than crashing. The agent then recovered gracefully, acknowledging
+  the tool was unavailable and providing supportive fallback advice — demonstrating
+  that a failing external dependency does not break the agent loop.
 
 ## Conditional workflow (RunnablePassthrough + RunnableBranch)
 
