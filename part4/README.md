@@ -13,7 +13,14 @@ Runnable-based routing.
 
 ## Environment variable required
 
-Stored in a `.env` file, excluded via `.gitignore`. No key appears in the repository.
+The agent's LLM loads its API key from an environment variable, never hardcoded.
+To run this code, set:
+
+GEMINI_API_KEY=your_google_gemini_api_key
+
+
+Store it in a `.env` file in this folder. The `.env` file is excluded via
+`.gitignore`, so no key appears in the repository.
 
 ## Files
 
@@ -22,6 +29,11 @@ Stored in a `.env` file, excluded via `.gitignore`. No key appears in the reposi
 - `workflow.py` — the RunnablePassthrough + RunnableBranch conditional workflow.
 
 ## How to run
+
+python3 tools.py # test the two tools directly
+python3 agent.py # run the agent: memory demo + 3 queries + tool-call logs
+python3 workflow.py # run the conditional workflow (both routes)
+
 
 ## Tools — contract table
 
@@ -47,8 +59,15 @@ and cannot run away. The underlying chat model is Gemini (`gemini-flash-latest`)
 
 For every tool call, the resolved decision is extracted from LangChain's **own
 native mechanism** — the executor's `intermediate_steps` (each an `AgentAction`
-carrying `.tool` and `.tool_input`) — not by parsing raw text. Example captured
-during a run:
+carrying `.tool` and `.tool_input`) — not by parsing raw text. Real examples
+captured during a run:
+
+TOOL CALL: {"tool": "lookup_order_status", "arguments": {"order_id": "A101"}}
+RESULT : Order A101: shipped, expected delivery in 2 days
+
+TOOL CALL: {"tool": "get_random_advice", "arguments": {}}
+RESULT : Just because you are offended, doesn't mean you are right.
+
 
 ## Demonstrated queries (the end-to-end loop)
 
